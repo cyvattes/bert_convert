@@ -1,0 +1,6 @@
+{campaigns_term, [
+    {237766034, [
+        {name, <<"Herp">>},
+        {stv_cross_campaign_enabled, false}
+    ]}
+]}.
