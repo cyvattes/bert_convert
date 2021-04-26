@@ -1,7 +1,7 @@
 bert_convert
 =====
 
-An OTP application
+Conversion Library for Bert/Term to Bert2
 
 Build
 -----

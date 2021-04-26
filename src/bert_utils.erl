@@ -34,6 +34,7 @@ receive_all(N) ->
 
 -spec write_file(filename(), mtime(), terms()) -> result().
 write_file(Output, MTime, Terms) ->
+  io:format("Writing ~s...~n", [Output]),
   Bytes = lists:map(
     fun (Term) ->
       Bin = term_to_binary(Term),

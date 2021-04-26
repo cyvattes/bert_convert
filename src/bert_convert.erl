@@ -1,7 +1,6 @@
 -module(bert_convert).
 
 -include("bert_convert.hrl").
-%-include("bert_utils.erl").
 -include_lib("kernel/include/file.hrl").
 
 -export([
@@ -13,11 +12,9 @@
   Filenames :: filename() | list(filename()).
 to_bert2([]) ->
   ok;
-to_bert2([X |_] = Wildcard) when is_integer(X) ->
-  Filenames = filelib:wildcard(Wildcard),
-  to_bert2(Filenames);
-to_bert2([X | _] = Filenames) when is_list(X) ->
+to_bert2(Wildcard) ->
   PID = self(),
+  Filenames = filelib:wildcard(Wildcard),
   lists:foreach(fun(Filename) ->
     spawn(fun() ->
       case filename:extension(Filename) of
@@ -48,5 +45,16 @@ bert_to_bert2(Filename) ->
 -spec term_to_bert2(filename()) -> result().
 term_to_bert2(Filename) ->
   Path = filename:dirname(Filename),
-  {ok, Tables} = file:consult(Filename),
-  bert_utils:write_tables(Path, Tables).
+  case file:consult(Filename) of
+    {ok, Tables} -> bert_utils:write_tables(Path, Tables);
+    {error, Code} when is_atom(Code) -> luger:error(
+        "bert_convert",
+        "Unable to read file ~s.term ~p",
+        [Filename, Code]
+    );
+    {error, Reason} -> luger:error(
+        "bert_convert",
+        "Error parsing file ~s.term ~p",
+        [Filename, file:format_error(Reason)]
+    )
+  end.

@@ -1,9 +1,0 @@
-#!/usr/bin/env escript
--mode(compile).
-
-main([]) ->
-    {_, Mod} = code:load_abs("/Users/c.vattes/Adgear/bert_convert/src/bert_convert"),
-    Mod:to_bert2("/Users/c.vattes/Adgear/bert_convert/priv/*").
-%main(Wildcard) ->
-%    {_, Mod} = code:load_abs("/Users/c.vattes/Adgear/bert_convert/src/bert_convert"),
-%    Mod:to_bert2(Wildcard).
