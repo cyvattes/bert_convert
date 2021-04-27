@@ -1,1 +1,12 @@
-[].
+[{<<"luger">>,
+  {git,"https://github.com/RAttab/luger.git",
+       {ref,"8cd691ed286190b84f7071ee89fbc36bc613215d"}},
+  0},
+ {<<"meck">>,
+  {git,"https://github.com/eproxus/meck.git",
+       {ref,"6121bb7e5c21b7ba2e79754f976a55f32940b28e"}},
+  1},
+ {<<"statsderl">>,
+  {git,"https://github.com/lpgauth/statsderl.git",
+       {ref,"c83a17f9426b1789eb8625050192dbdd107493a2"}},
+  1}].
