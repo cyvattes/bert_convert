@@ -1,0 +1,24 @@
+#!/usr/bin/env escript
+-mode(compile).
+
+%% public
+main(Wildcard) ->
+    case load_modules([<<"rtb_lib">>]) of
+        ok ->
+            rtb_lib_bert_convert:to_bert2(Wildcard);
+        {error, Module} ->
+            io:format(
+                "Module [~p] not built. Run make first.~n",
+                [Module]
+            )
+    end.
+
+%% private
+load_modules([]) ->
+    ok;
+load_modules([Module | Rest]) ->
+    Path = filename:absname(filename:join([<<"./_build/default/lib">>, Module, <<"ebin">>])),
+    case code:add_path(binary_to_list(Path)) of
+        true -> load_modules(Rest);
+        {error, bad_directory} -> {error, Module}
+    end.

@@ -1,6 +1,0 @@
--type filename() :: file:name_all().
--type mtime() :: file:date_time().
--type path() :: list().
--type result() :: ok | {error, term()}.
--type table() :: atom().
--type terms() :: list({term(), term()}).
