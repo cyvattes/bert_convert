@@ -8,11 +8,14 @@ Build
 
     $ rebar3 compile
     
-    
 Run
 ---
 
     $ ./bert_convert "<wildcard>"
+
+or
+
+    $ ./bert_convert <path_to_filename>
 
 Wildcard must be a filepath, except for the following:
 - Wild MUST be wrapped in quotes (\")
